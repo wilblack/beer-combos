@@ -1,0 +1,32 @@
+<div class="row">
+    <p>This is a calculator for computing the number of possible combinations 
+        of beers</p>
+    It is a classic n choice k problem, where order doesn't matter.
+
+    Here is the formula used to compute the number of ways to mix k beers from N total possible beers, where order doesn't matter.
+
+    $$\frac{N!}{k!(N-k)!}$$
+
+    For example to find the number of ways to mix 3 beers from 15 total beers we use
+
+    $$\frac{15!}{3!(15-3)!} = 455$$ 
+
+    To get the total number of combos, you need to sum up all possible combos
+
+    $$\sum_{i=0}^N \frac{N!}{k!(N-k)!}$$
+
+
+    <form name='form'>
+        <label>
+          Number of beers: 
+        <input type='number' ng-model='numBeers'>
+        </label>
+    </form>
+    <h3>Total Combinations: {{totalCombos| number}}</h3>
+</div>
+
+
+<div class='row'>
+    <div ng-repeat='letter in letters.slice(0,numBeers)' >{{$index+1}} beer: {{combos(numBeers, $index+1) | number}}</div>
+    
+</div>
