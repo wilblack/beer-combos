@@ -21,6 +21,8 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+  var pkg = require('./package.json');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -240,6 +242,37 @@ module.exports = function (grunt) {
         assetsDirs: ['<%= yeoman.dist %>','<%= yeoman.dist %>/images']
       }
     },
+
+
+
+    buildcontrol: {
+    options: {
+      dir: 'dist',
+      commit: true,
+      push: true,
+      message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+    },
+    pages: {
+      options: {
+        remote: 'git@github.com:wilblack/beer-combos.git',
+        branch: 'gh-pages'
+      }
+    },
+    heroku: {
+      options: {
+        remote: 'git@heroku.com:example-heroku-webapp-1988.git',
+        branch: 'master',
+        tag: pkg.version
+      }
+    },
+    local: {
+      options: {
+        remote: '../',
+        branch: 'build'
+      }
+    }
+  },
+
 
     // The following *-min tasks will produce minified files in the dist folder
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
